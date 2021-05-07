@@ -7,6 +7,8 @@ class StoreModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
 
+    # lazy='dynamic' makes items property a query instead of eagerly populating them.
+    # this means you need items.all() to puppulate it
     items = db.relationship('ItemModel', lazy='dynamic')
 
     def __init__(self, name):
